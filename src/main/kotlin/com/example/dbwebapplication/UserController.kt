@@ -6,10 +6,7 @@ import org.example.UpcomingEventsData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.ui.Model
 import org.springframework.ui.set
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.lang.NullPointerException
 import java.time.LocalDate
 
@@ -21,7 +18,7 @@ class UserController {
     @Autowired
     lateinit var tablesService: TablesService
 
-    @GetMapping("/add registered person")
+    @PutMapping("/add registered person")
     fun addRegisteredPerson(surname: String, name: String, parental_name: String?=null, phone_number: String?=null): Int {
         val startTime = System.currentTimeMillis()
         val ans = tablesService.addRegisteredPerson(surname, name, parental_name, phone_number)
@@ -30,7 +27,7 @@ class UserController {
         return ans
     }
 
-    @GetMapping("/add visit")
+    @PutMapping("/add visit")
     fun addVisit(person_id: Int, event_id: Int): Int {
         val startTime = System.currentTimeMillis()
         val ans = tablesService.addVisit(person_id, event_id)
@@ -39,7 +36,7 @@ class UserController {
         return ans
     }
 
-    @GetMapping("/add review")
+    @PutMapping("/add review")
     fun addReview(visit_id: Int, text: String): Int {
         val startTime = System.currentTimeMillis()
         val ans = tablesService.addReview(visit_id, text)

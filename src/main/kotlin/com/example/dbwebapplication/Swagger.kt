@@ -16,8 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 @Configuration
 @EnableSwagger2
 class Swagger {
-    /*@Value("\${application.version}")
-    private val version: String? = null*/
+
     @Bean
     fun swaggerApiConfig(): Docket {
         return Docket(DocumentationType.SWAGGER_2)
@@ -26,10 +25,5 @@ class Swagger {
             .apis(RequestHandlerSelectors.basePackage("com.example"))
             .build()
     }
-    /*private fun apiInfo(): ApiInfo? {
-        return ApiInfo(
-            "Langton ant app", "rest api for langton ant app", version, null,
-            Contact("name", "N/A", "email"), null, null, Collections.EMPTY_LIST
-        )
-    }*/
+
 }

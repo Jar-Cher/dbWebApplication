@@ -76,7 +76,7 @@ class TablesService {
     }
 
     //@CacheEvict(value = ["organisations"], allEntries = true)
-    fun addOrganisation(id: Int, name: String, balance: Int?=null, text: String?=null): Int {
-        return tablesRepository.addOrganisation(id, name, balance, text)
+    fun addOrganisation(name: String, balance: Int?=null, characteristics: String?=null): Int {
+        return tablesRepository.addOrganisation(name, balance, characteristics)
     }
 }

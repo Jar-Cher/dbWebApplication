@@ -17,7 +17,7 @@ class AdminController {
     @Autowired
     lateinit var tablesService: TablesService
 
-    @GetMapping("/del review")
+    @DeleteMapping("/del review")
     fun delReview(id: Int): Int {
         val startTime = System.currentTimeMillis()
         val ans = tablesService.delReview(id)
@@ -25,12 +25,12 @@ class AdminController {
         return ans
     }
 
-    @GetMapping("/add event")
+    @PutMapping("/add event")
     fun addEvent(
         name: String,
         type: String,
-        starting_date: LocalDate,
-        finishing_date: LocalDate,
+        starting_date: String,
+        finishing_date: String,
         responsible_id: Int? = null,
         organizer_id: Int? = null,
         sponsor_id: Int? = null,
@@ -41,8 +41,8 @@ class AdminController {
         val ans = tablesService.addEvent(
             name,
             type,
-            starting_date,
-            finishing_date,
+            LocalDate.parse(starting_date),
+            LocalDate.parse(finishing_date),
             responsible_id,
             organizer_id,
             sponsor_id,
@@ -53,7 +53,7 @@ class AdminController {
         return ans
     }
 
-    @GetMapping("/add executive")
+    @PutMapping("/add executive")
     fun addExecutive(id: Int, characteristics: String?=null): Int {
         val startTime = System.currentTimeMillis()
         val ans = tablesService.addExecutive(id, characteristics)
@@ -61,10 +61,10 @@ class AdminController {
         return ans
     }
 
-    @GetMapping("/add organisation")
-    fun addOrganisation(id: Int, name: String, balance: Int?=null, text: String?=null): Int {
+    @PutMapping("/add organisation")
+    fun addOrganisation(name: String, balance: Int?=null, characteristics: String?=null): Int {
         val startTime = System.currentTimeMillis()
-        val ans = tablesService.addOrganisation(id, name, balance, text)
+        val ans = tablesService.addOrganisation(name, balance, characteristics)
         println(System.currentTimeMillis() - startTime)
         return ans
     }

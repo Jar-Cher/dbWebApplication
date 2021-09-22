@@ -26,7 +26,7 @@ class TablesRepository {
     }
     //     user - add/view/Review
     fun addReview(visit_id: Int, text: String): Int {
-        return jdbcTemplate.update("INSERT INTO visits (person_id, event_id) VALUES (?,?)", visit_id, text)
+        return jdbcTemplate.update("INSERT INTO reviews (visit_id, text) VALUES (?,?)", visit_id, text)
     }
     fun getReviews(event_id: Int, reviewsToList: Int): List<ReviewData>{
         return jdbcTemplate.query("SELECT reviews.id, reviews.text, name\n" +
@@ -90,7 +90,7 @@ class TablesRepository {
         return jdbcTemplate.update("INSERT INTO executives (id, characteristics) VALUES (?,?)", id, characteristics)
     }
     //     admin - addOrganisation
-    fun addOrganisation(id: Int, name: String, balance: Int?=null, text: String?=null): Int {
-        return jdbcTemplate.update("INSERT INTO organisations (id, name, balance, text) VALUES (?,?,?,?)", id, name, balance, text)
+    fun addOrganisation(name: String, balance: Int?=null, characteristics: String?=null): Int {
+        return jdbcTemplate.update("INSERT INTO organisations (name, balance, characteristics) VALUES (?,?,?)", name, balance, characteristics)
     }
 }
